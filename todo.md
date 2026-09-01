@@ -1,0 +1,2 @@
+- [ ] os detect script become global
+- [ ] make envar works
