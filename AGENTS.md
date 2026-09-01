@@ -16,6 +16,8 @@ There is no build system or dependency installation step; these are sourced shel
 
 Use English for code, comments, help text, and documentation. Preserve the interpreter declared by each shebang: use portable `sh` syntax in `#!/usr/bin/env sh` files and Zsh features only in Zsh modules. Indent with two spaces, quote variable expansions, and prefer `printf` over `echo` where output needs to be portable. Name public commands in kebab case (`kill-p`); prefix implementation helpers and temporary globals with the module name (`_ni_*`, `_kill_p_*`, `_envar_*`) to avoid collisions in the user’s interactive shell.
 
+When a module needs the current platform, source and call the shared `os/init.zsh` detector (`os`) instead of duplicating `uname` or `OSTYPE` checks.
+
 ## Testing Guidelines
 
 No automated test framework or coverage target is currently configured. Every behavior change needs syntax checks plus a focused manual test covering success, invalid input, and a missing required command. Do not run privileged or destructive paths during normal validation; exercise `--help` and dry-run paths instead. Add regression scripts or tests with a new module when its parsing or platform logic becomes non-trivial.
