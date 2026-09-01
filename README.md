@@ -20,5 +20,6 @@ zimfw install
 
 - `kill-p`: fuzzy and direct process killer.
 - `ni`: lightweight shell implementation of selected `@antfu/ni` commands.
+- `os`: prints a normalized operating system name (`windows`, `macos`, `linux`, or `unknown`).
 
 Each tool is loaded automatically from its own `*/init.zsh` file when zimfw loads this module.

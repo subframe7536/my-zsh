@@ -30,21 +30,7 @@ EOF
     esac
   done
 
-  # --- Platform Detection ---
-  _detect_platform() {
-    if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" ]] || \
-       [[ -n "$GIT_BASH_VERSION" ]] || [[ "$(uname -s)" =~ ^MINGW ]]; then
-      echo "windows"
-    elif [[ "$OSTYPE" == "darwin"* ]]; then
-      echo "macos"
-    elif [[ "$OSTYPE" == "linux"* ]]; then
-      echo "linux"
-    else
-      echo "unknown"
-    fi
-  }
-
-  PLATFORM=$(_detect_platform)
+  PLATFORM=$(os)
   case "$PLATFORM" in
     windows) HOSTS_FILE="/c/Windows/System32/drivers/etc/hosts" ;;
     macos|linux) HOSTS_FILE="/etc/hosts" ;;

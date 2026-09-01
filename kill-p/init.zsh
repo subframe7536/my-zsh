@@ -17,8 +17,8 @@ _kill_p_setup_env() {
     KILL_P_USER=${USER-}
   fi
 
-  case "${OSTYPE-}" in
-    msys*|cygwin*)
+  case "$(os)" in
+    windows)
       KILL_P_IS_WINDOWS=1
       KILL_P_PS_CMD='ps -W'
       KILL_P_KILL_BIN='/usr/bin/kill'
