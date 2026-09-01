@@ -2,15 +2,14 @@
 
 ## Project Structure & Module Organization
 
-This repository is a [zimfw](https://zimfw.sh/) plugin containing small shell utilities. The root [`init.zsh`](init.zsh) is the plugin entry point: it sources every `*/init.zsh` module automatically. Keep each user-facing command in its own directory, for example `kill-p/init.zsh`, `ni/init.zsh`, or `ghdns/init.zsh`. Put module-specific usage notes beside the implementation (as `ni/README.md` does). The `envar/` directory contains shared helpers in `common.zsh`, platform implementations in `unix.zsh` and `win.zsh`, and its loader in `_init.zsh`.
+This repository is a [zimfw](https://zimfw.sh/) plugin containing small shell utilities. The root [`init.zsh`](init.zsh) is the plugin entry point: it sources every `*/init.zsh` module automatically. Keep each user-facing command in its own directory, for example `kill-p/init.zsh`, `ni/init.zsh`, or `ghdns/init.zsh`. Put module-specific usage notes beside the implementation (as `ni/README.md` does).
 
 ## Development and Validation Commands
 
 There is no build system or dependency installation step; these are sourced shell scripts.
 
-- `zsh -n init.zsh kill-p/init.zsh ni/init.zsh ghdns/init.zsh` checks Zsh syntax without executing code.
-- `sh -n envar/common.zsh envar/unix.zsh kill-p/init.zsh ni/init.zsh` checks POSIX-shell-compatible files.
-- `zsh -f` starts a clean shell for manual smoke tests. Source the module, e.g. `source "$PWD/ni/init.zsh"; ni --help`.
+- `zsh -n init.zsh` checks the plugin entry point syntax without executing code. Add every changed Zsh module to this command.
+- `zsh -f` starts a clean shell for manual smoke tests. Source the module, e.g. `source "$PWD/ni/init.zsh"; ni --help`. Ensure required tools such as `awk` are available on `PATH`.
 - Use safe modes when available: `ghdns --dry-run` must be used before testing an actual hosts-file update.
 
 ## Coding Style & Naming Conventions
